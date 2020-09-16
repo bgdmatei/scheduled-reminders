@@ -1,0 +1,16 @@
+<h1> Welcome <%= current_user.email %></h1>
+
+<div>
+<% if @reminders.empty? %>
+      You have no reminders
+<% else %>
+    <ul>
+    <% @reminders.each do |reminder| %>
+       <li> <%= reminder.title %> - <%= reminder.description %></li>
+      
+    <% end %>
+    </ul>
+<% end %>
+</div>
+
+<%= link_to "Add reminder", new_reminder_path %>
