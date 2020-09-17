@@ -20,6 +20,8 @@ SimpleForm.setup do |config|
     # given input by passing: `f.input EXTENSION_NAME => false`.
     # You can make any of these extensions optional by
     # renaming `b.use` to `b.optional`.
+    config.label_text = lambda { |label, required, explicit_label| "#{label}" }
+
 
     # Determines whether to use HTML5 (:email, :url, ...)
     # and required attributes

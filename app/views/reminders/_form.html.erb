@@ -1,0 +1,16 @@
+
+<%= simple_form_for(@reminder) do |f| %>
+    <div class="input">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+    </div>
+    <div class="input">
+        <%= f.label :description %>
+        <%= f.text_area  :description %>
+    </div>
+    <div class="input">
+        <%= f.label :date_scheduled %>
+        <%= f.datetime_select :date_scheduled %>
+    </div>
+    <%= f.button :submit %>
+<% end %>
