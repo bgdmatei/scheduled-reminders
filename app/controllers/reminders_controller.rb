@@ -3,7 +3,11 @@ class RemindersController < ApplicationController
     before_action :set_reminder, only: [:show, :edit, :update, :destroy]
 
     def index 
-        @reminders = Reminder.all 
+        if user_signed_in?
+            @reminders = Reminder.where(user: current_user)
+          else
+            @reminders = []
+          end
     end
 
     def show 
@@ -20,6 +24,7 @@ class RemindersController < ApplicationController
         @reminder = Reminder.new(reminder_params)
         @reminder.user = current_user
         if @reminder.save 
+            send_reminder
             redirect_to reminders_path, notice: "Reminder created!"
         else
             render :new
@@ -28,6 +33,7 @@ class RemindersController < ApplicationController
 
     def update
         if @reminder.update(reminder_params)
+            send_reminder
             redirect_to @reminder, notice: "Reminder updated!"
         else
             render :edit
@@ -48,6 +54,10 @@ class RemindersController < ApplicationController
 
     def reminder_params
         params.require(:reminder).permit(:title, :description, :date_scheduled)
+    end
+
+    def send_reminder
+        ReminderMailer.with(user: current_user, reminder: @reminder).reminder_email.deliver_later!(wait_until: @reminder.date_scheduled)
     end
     
 end
