@@ -1,12 +1,12 @@
 
-##Project Setup
+## Project Setup
 `rails db:create db:migrate`
 `bundle install`
 
-##Running app
+## Running app
 `rails s`
 
-##Task
+## Task
 In order to get some insight into your coding style and approach to problem solving, we would like to give you a small programming task for you to solve. You can either upload the project to Github or send it to us via mail. It’s not supposed to win any beauty contest either, so it doesn’t really matter how the views look, as long as the functionality is there.
 
 Ideally you create an initial commit after the invocation of `rails new`, so it’s easy to blank out the skeleton code.
